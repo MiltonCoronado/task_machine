@@ -7,7 +7,6 @@ const withStorageListener = (WrappedComponent) => {
     useEffect(() => {
       const onStorage = (event) => {
         if (event.key === "TODOS_V2") {
-          console.log("Hubo cambios en TODOS_V2");
           setStorageChange(true);
           }
         };

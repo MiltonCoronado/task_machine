@@ -1,10 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 
 const useLocalStorage = (itemName, initialValue) => {//Estos; son PARAMETROS, no PROPS!!!
-  const [sincronizedItem, setSincronizedItem] = useState(true)
-  const [item, setItem] = useState(initialValue);//el valor inicial es un array vacio, al setear este "valor inicial" este cambia y es almacenado en el estado con persistensia de datos, ya que el argumento de "setItem()" es "parsedItem" y este proviene de "localStorageItem" que viene de "const localStorageItem = localStorage.getItem(itemName)"
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [state, dispatch] = useReducer(reducer, initialState({ initialValue }));
+
+  const {sincronizedItem, error, loading, item} = state;
+
+  const onError = (error) => dispatch({ 
+    type: actionTypes.error,
+    payload: error, 
+  });
+
+  const onSuccess = (parsedItem) => dispatch({
+    type: actionTypes.success,
+    payload: parsedItem,
+  });
+
+  const onSave = (newItem) => dispatch({
+    type: actionTypes.save,
+    payload: newItem,
+  });
+
+  const onSincronize = () => dispatch({
+    type: actionTypes.sincronize,
+  });
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -17,34 +36,28 @@ const useLocalStorage = (itemName, initialValue) => {//Estos; son PARAMETROS, no
         } else {
          parsedItem = JSON.parse(localStorageItem);//JSON.parse(): Este método analiza una cadena de texto JSON y la convierte en un objeto JavaScript correspondiente al valor o estructura de datos descritos en la cadena JSON.
         };
-         
-        setItem(parsedItem);
-        setLoading(false);
-        setSincronizedItem(true);
+        
+        onSuccess(parsedItem);
 
       } catch(error) {
-        setLoading(false);
-        setError(true);
+        onError(error);
       };
 
     }, 2000)
   },[sincronizedItem]);
 
   const sincronizeItem = () => {
-    setLoading(true);
-    setSincronizedItem(false);
+    onSincronize();
   };
 
   const saveActionStorage = (newItem) => {
     try {
       const stringifiedItem = JSON.stringify(newItem);
       localStorage.setItem(itemName, stringifiedItem);
-      setItem(newItem);
+      onSave(newItem);
     }catch(error){
-      setLoading(false);
-      setError(true);
+      onError(error);
     }
-    
   };
 
   return {
@@ -54,6 +67,52 @@ const useLocalStorage = (itemName, initialValue) => {//Estos; son PARAMETROS, no
     error,
     sincronizeItem,
   };
+};
+
+const initialState = ({ initialValue }) => ({
+  sincronizedItem: true,
+  error: false,
+  loading: true,
+  item: initialValue
+})
+
+const actionTypes = {
+  error: 'ERROR',
+  success: 'SUCCESS',
+  save: 'SAVE',
+  sincronize: 'SINCRONIZE',
+};
+
+const reducer = (state, action) => {
+  switch(action.type) {
+    case actionTypes.error:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+      }
+    case actionTypes.success:
+      return {
+        ...state,
+        error: false,
+        loading: false,
+        sincronizedItem: true,
+        item: action.payload,
+      }
+    case actionTypes.save:
+      return {
+        ...state,
+        item: action.payload
+      } 
+    case actionTypes.sincronize:
+      return {
+        ...state,
+        loading: true,
+        sincronizedItem: false,
+      }
+    default:
+      return initialState;   
+  }
 };
 
 export { useLocalStorage };

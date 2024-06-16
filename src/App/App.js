@@ -12,7 +12,7 @@ import { TodoHeader } from '../TodoHeader/TodoHeader';
 import { Modal } from '../Modal/Modal';
 import { ChangeAlertWithStorageListener } from '../ChangeAlert/ChangeAlert';
 
-const App = () => {//COMPONENTE STATELESS.
+const App = () => {
   const {
     error,
     searchedTodos,

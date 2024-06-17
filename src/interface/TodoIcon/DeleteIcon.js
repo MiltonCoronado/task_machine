@@ -5,7 +5,7 @@ const DeleteIcon = ({ onDelete }) => {
     <TodoIcon
       type='delete'
       color='gray'
-      checkOrDelete={onDelete}
+      actionClick={onDelete}
     />
   )
 };

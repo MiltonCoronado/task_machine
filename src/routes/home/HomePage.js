@@ -1,18 +1,18 @@
-import { useStateful } from './useStateful';
-import { TodoCounter } from '../TodoCounter/TodoCounter';
-import { TodoSearch } from '../TodoSearch/TodoSearch';
-import { TodoList } from '../TodoList/TodoList';
-import { TodoItem } from '../TodoItem/TodoItem';
-import { CreateTodoButton } from '../CreateTodoButton/CreateTodoButton';
-import { TodosLoading } from '../TodosLoading/TodosLoading';
-import { TodosError } from '../TodosError/TodosError';
-import { EmptyTodos } from '../EmptyTodos/EmptyTodos';
-import { TodoForm } from '../TodoForm/TodoForm';
-import { TodoHeader } from '../TodoHeader/TodoHeader';
-import { Modal } from '../Modal/Modal';
-import { ChangeAlertWithStorageListener } from '../ChangeAlert/ChangeAlert';
+import { useStateful } from '../useStateful';
+import { TodoCounter } from '../../interface/TodoCounter/TodoCounter';
+import { TodoSearch } from '../../interface/TodoSearch/TodoSearch';
+import { TodoList } from '../../interface/TodoList/TodoList';
+import { TodoItem } from '../../interface/TodoItem/TodoItem';
+import { CreateTodoButton } from '../../interface/CreateTodoButton/CreateTodoButton';
+import { TodosLoading } from '../../interface/TodosLoading/TodosLoading';
+import { TodosError } from '../../interface/TodosError/TodosError';
+import { EmptyTodos } from '../../interface/EmptyTodos/EmptyTodos';
+import { TodoForm } from '../../interface/TodoForm/TodoForm';
+import { TodoHeader } from '../../interface/TodoHeader/TodoHeader';
+import { Modal } from '../../interface/Modal/Modal';
+import { ChangeAlertWithStorageListener } from '../../interface/ChangeAlert/ChangeAlert';
 
-const App = () => {
+const HomePage = () => {
   const {
     error,
     searchedTodos,
@@ -61,6 +61,7 @@ const App = () => {
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
+            onEdit={() => console.log('EDIT TODO!!!')}
             onComplete={() => completeTodo(todo.text)}
             onDelete={() => deleteTodo(todo.text)}
           />
@@ -88,7 +89,4 @@ const App = () => {
   )
 };
   
-export { App };
-
-
-
+export { HomePage };

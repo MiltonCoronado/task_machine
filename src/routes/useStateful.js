@@ -25,28 +25,30 @@ const useStateful = () => {
   );
 
   const addTodo = (text) => {
+    const id = newTodoId(todos);
     const newTodos = [...todos];
     newTodos.push({
       text,
-      completed: false
+      completed: false,
+      id,
     })
     saveActionStorage(newTodos);
   };
 
-  const completeTodo = (text) => {
+  const completeTodo = (id) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
-      copyItem => copyItem.text === text//finIndex() retorna un index deacuerdo a la condicion. Aqui "copyTodos.text" recorre todo el array de obj. copiados y "text" es un solo objeto del array original enviado por argumento al ser seleccionado ya en la interfaz, al ser comparados retorna en index de "copyTodos" donde se hizo match. 
+      copyItem => copyItem.id === id//finIndex() retorna un index deacuerdo a la condicion. Aqui "copyTodos.text" recorre todo el array de obj. copiados y "text" es un solo objeto del array original enviado por argumento al ser seleccionado ya en la interfaz, al ser comparados retorna en index de "copyTodos" donde se hizo match. 
     );
     newTodos[todoIndex].completed = true;
     saveActionStorage(newTodos);//dentro de "saveActionInLocaStorage()" se encuantra el actualizador del estado "setTodos".
     };
   
 
-  const deleteTodo = (text) => {
+  const deleteTodo = (id) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
-      copyItem => copyItem.text === text
+      copyItem => copyItem.id === id
     );
     newTodos.splice(todoIndex, 1);
     saveActionStorage(newTodos);
@@ -66,8 +68,15 @@ const useStateful = () => {
     completeTodo,
     setOpenModal,
     sincronizeTodo,
-  }
-  
+  } 
+};
+
+const newTodoId = (todoList) => {
+  if (!todoList.length) return 1;
+
+  const idList = todoList.map(item => item.id);//por que "item.id" y no "item[id]" si es un array de objetos??????????????????????????????????????????????????????
+  const idMax = Math.max(...idList)
+  return idMax + 1;
 };
 
 export { useStateful };

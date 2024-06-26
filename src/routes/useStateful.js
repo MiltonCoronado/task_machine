@@ -11,9 +11,8 @@ const useStateful = () => {
   } = useLocalStorage('TODOS_V2', []);
 
   const [searchValue, setSearchValue] = useState('');
-  const [openModal, setOpenModal] = useState(false);
 
-  const completedTodos = todos.filter(item => !!item.completed).length;//DOBLE NEGACION: convierte cualquier dato en un BOLEANO!!!
+  const completedTodos = todos.filter(item => !!item.completed).length;//DOBLE NEGACION: convierte cualquier dato en un BOOLEANO. En este caso pregunta la longitud de cuantos items completados son true!!!
   const totalTodos = todos.length;//ESTADO DERIVADO: convertir el estado en otro tipo de dato guardandolo en una variable!!!
 
   const searchedTodos = todos.filter(//filtra el array todos y retorna un nuevo array segun la condicion. 
@@ -43,8 +42,16 @@ const useStateful = () => {
     newTodos[todoIndex].completed = true;
     saveActionStorage(newTodos);//dentro de "saveActionInLocaStorage()" se encuantra el actualizador del estado "setTodos".
     };
+    
+  const editTodo = (id, newText) => {
+    const newTodos = [...todos];
+    const todoIndex = todos.findIndex(
+      copyItem => copyItem.id === id
+    );
+    newTodos[todoIndex].text = newText;//newTodos[todoIndex].Text === elArrayDeOjetos[accedePocicionObjetoPorId].AccedePropiedadObjeto
+    saveActionStorage(newTodos);
+  };
   
-
   const deleteTodo = (id) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
@@ -61,13 +68,12 @@ const useStateful = () => {
     completedTodos,
     totalTodos,
     searchedTodos,
-    openModal,
     setSearchValue,
     addTodo,
     deleteTodo,
     completeTodo,
-    setOpenModal,
     sincronizeTodo,
+    editTodo,
   } 
 };
 

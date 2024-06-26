@@ -74,7 +74,7 @@ const initialState = ({ initialValue }) => ({
   error: false,
   loading: true,
   item: initialValue
-})
+});
 
 const actionTypes = {
   error: 'ERROR',

@@ -34,19 +34,26 @@ const useStateful = () => {
     saveActionStorage(newTodos);
   };
 
+  const getTodo = (id) => {//este id que viene por parametro proviene de el hook "useParams" desde EditTodoPage y como es dinamico (para eso es useParams ejem. /:slot, /:id) va a enviar el id como parametro del todo que seleccionemos en la UI.
+    const todoIndex = todos.findIndex(
+      item => item.id === id
+    );
+    return todos[todoIndex];
+  };
+
   const completeTodo = (id) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
-      copyItem => copyItem.id === id//finIndex() retorna un index deacuerdo a la condicion. Aqui "copyTodos.text" recorre todo el array de obj. copiados y "text" es un solo objeto del array original enviado por argumento al ser seleccionado ya en la interfaz, al ser comparados retorna en index de "copyTodos" donde se hizo match. 
+      copyItem => copyItem.id === id//finIndex() retorna un index deacuerdo a la condicion. Aqui "copyItem.id" recorre todo el array de obj. copiados y "id" es un solo objeto del array original enviado por argumento al ser seleccionado ya en la interfaz, al ser comparados retorna en index de "copyTodos" donde se hizo match. 
     );
     newTodos[todoIndex].completed = true;
     saveActionStorage(newTodos);//dentro de "saveActionInLocaStorage()" se encuantra el actualizador del estado "setTodos".
-    };
+  };
     
-  const editTodo = (id, newText) => {
+  const editTodo = (id, newText) => {//este id que viene por parametro proviene de el hook "useParams" 
     const newTodos = [...todos];
     const todoIndex = todos.findIndex(
-      copyItem => copyItem.id === id
+      item => item.id === id
     );
     newTodos[todoIndex].text = newText;//newTodos[todoIndex].Text === elArrayDeOjetos[accedePocicionObjetoPorId].AccedePropiedadObjeto
     saveActionStorage(newTodos);
@@ -68,6 +75,7 @@ const useStateful = () => {
     completedTodos,
     totalTodos,
     searchedTodos,
+    getTodo,
     setSearchValue,
     addTodo,
     deleteTodo,

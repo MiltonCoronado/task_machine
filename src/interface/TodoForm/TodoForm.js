@@ -4,7 +4,7 @@ import './TodoForm.css';
 
 function TodoForm(props) {
   const navigate = useNavigate();
-  const [newTodoValue, setNewTodoValue] = useState('');
+  const [newTodoValue, setNewTodoValue] = useState(props.defaultTodoText || '');
 
   const myOnChangeEventReceiver = (event) => {
     setNewTodoValue(event.target.value);
@@ -14,7 +14,7 @@ function TodoForm(props) {
   };
   const myOnsubmitEventReceiver = (event) => {
     event.preventDefault();
-    props.submitEvent(newTodoValue);
+    props.submitEvent(newTodoValue);//Esta es la sintaxis del llamado a una funcion desde una render prop. que ejecuta el llamado real de la Fn desde "EditTodoPage" && "NewTodoPage".
     navigate('/');
   };
 

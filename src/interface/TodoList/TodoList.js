@@ -11,7 +11,7 @@ const TodoList = (props) => {
 
       {(!!props.totalTodos && !props.searchedTodos.length) && props.onEmtySearchResults(props.searchText)}
 
-      {(!props.loading && !props.error) && props.searchedTodos.map((todos) => props.render(todos))}
+      {(!props.loading && !props.error) && props.searchedTodos.map(item => props.render(item))}
       
     </ul>
   )

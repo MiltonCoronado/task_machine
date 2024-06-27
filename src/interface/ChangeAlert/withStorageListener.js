@@ -12,7 +12,7 @@ const withStorageListener = (WrappedComponent) => {
         };
 
       window.addEventListener("storage", onStorage);
-
+      console.log('useEffect(withStorageListener) reinisializado porque se monto y desmonto el componente de ruta')
       return () => {
         window.removeEventListener("storage", onStorage);//por que se remueve el listener???????????????????????????????
       };

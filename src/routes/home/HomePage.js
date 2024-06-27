@@ -54,14 +54,17 @@ const HomePage = () => {
         onEmtySearchResults={
           (searchText) => <p>No hay resultados para {searchText}</p>
         }
-        render={todo => (
+        render={item => (
           <TodoItem
-            key={todo.id}
-            text={todo.text}
-            completed={todo.completed}
-            onEdit={() => navigate('/edit/' + todo.id)}
-            onComplete={() => completeTodo(todo.id)}
-            onDelete={() => deleteTodo(todo.id)}
+            key={item.id}
+            text={item.text}
+            completed={item.completed}
+            onEdit={() => navigate(
+              '/edit/' + item.id, 
+              { state: {item} },
+            )}
+            onComplete={() => completeTodo(item.id)}
+            onDelete={() => deleteTodo(item.id)}
           />
         )}
       />

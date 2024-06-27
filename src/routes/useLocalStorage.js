@@ -32,7 +32,7 @@ const useLocalStorage = (itemName, initialValue) => {//Estos; son PARAMETROS, no
         let parsedItem;
         
         if (!localStorageItem) {
-          localStorage.setItem(itemName, JSON.stringify(initialValue));//JSON.stringify(): Este método convierte un objeto JavaScript o un valor en una cadena de texto JSON. Puede manejar objetos, arrays, strings, números, booleanos y null.
+          localStorage.setItem(itemName, JSON.stringify(initialValue));//JSON.stringify(): this método convierte un objeto JavaScript o un valor en una cadena de texto JSON. Puede manejar objetos, arrays, strings, números, booleanos y null.
         } else {
           parsedItem = JSON.parse(localStorageItem);//JSON.parse(): Este método analiza una cadena de texto JSON y la convierte en un objeto JavaScript correspondiente al valor o estructura de datos descritos en la cadena JSON.
         };

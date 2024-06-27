@@ -74,15 +74,6 @@ const HomePage = () => {
         loading={loading}
       />
 
-      {/* {openModal && (
-        <Modal>
-          <TodoForm
-            addTodo={addTodo}
-            setOpenModal={setOpenModal}
-          />
-        </Modal>
-      )} */}
-
       <ChangeAlertWithStorageListener
         sincronizeTodo={sincronizeTodo}
       />

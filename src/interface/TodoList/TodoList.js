@@ -18,4 +18,4 @@ const TodoList = (props) => {
 };
 
 export { TodoList };
-//tanto que uso !== es ridiculo que no sepa describir lo que hace (ver valores truly && falsy) ver short circuit.
+//tanto que uso !== es ridiculo que no sepa describir lo que hace (ver valores truly && falsy) ver short circuit!!!!!!!!!!!!!!!!!!!!!!

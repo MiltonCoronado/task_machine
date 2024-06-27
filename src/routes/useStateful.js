@@ -44,7 +44,7 @@ const useStateful = () => {
   const completeTodo = (id) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
-      copyItem => copyItem.id === id//finIndex() retorna un index deacuerdo a la condicion. Aqui "copyItem.id" recorre todo el array de obj. copiados y "id" es un solo objeto del array original enviado por argumento al ser seleccionado ya en la interfaz, al ser comparados retorna en index de "copyTodos" donde se hizo match. 
+      copyItem => copyItem.id === id//finIndex() retorna un index deacuerdo a la condicion. Aqui "copyItem.id" recorre todo el array de obj. copiados y "id" es un solo object del array original enviado por argumento al ser seleccionado ya en la interfaz, al ser comparados return en index de "copyTodos" donde se hizo match. 
     );
     newTodos[todoIndex].completed = true;
     saveActionStorage(newTodos);//dentro de "saveActionInLocaStorage()" se encuantra el actualizador del estado "setTodos".

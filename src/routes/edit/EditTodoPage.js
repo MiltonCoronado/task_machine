@@ -3,9 +3,9 @@ import { TodoForm } from '../../interface/TodoForm/TodoForm';
 import { useStateful } from '../useStateful';
 
 const EditTodoPage = () => {
-  const location = useLocation();//con "useLocation()" podemos transferir informacion de un a ruta a otra. y que esa otra ruta pueda recibir esa informacion.
+  const location = useLocation();//con "useLocation()" podemos transferir informacion de un a ruta a otra. y que esa otra ruta pueda recibir esa informacion(aun falta informarme y estudiar mas sobre este Hook de react-router-dom).
   const params = useParams();
-  const id = Number(params.id)//Los parametros de una url por defecto son textos, para asegurar que sea un numero usamos el objeto Number();
+  const id = Number(params.id)//Los parametros de una url por defecto son textos, para asegurar que sea un numero usamos el objeto Number(); de vanilla js.
   
   const { editTodo, getTodo, loading } = useStateful();
 

@@ -14,7 +14,7 @@ function TodoForm(props) {
   };
   const myOnsubmitEventReceiver = (event) => {
     event.preventDefault();
-    props.submitEvent(newTodoValue);//Esta es la sintaxis del llamado a una funcion desde una render prop. que ejecuta el llamado real de la Fn desde "EditTodoPage" && "NewTodoPage".
+    props.submitEvent(newTodoValue);//Esta es la sintaxis del llamado a una funcion desde una render prop. Que ejecuta el llamado real de la Fn desde "EditTodoPage" && "NewTodoPage".
     navigate('/');
   };
 

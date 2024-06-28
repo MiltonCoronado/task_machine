@@ -8,7 +8,6 @@ const EditTodoPage = () => {
   const id = Number(params.id)//Los parametros de una url por defecto son textos, para asegurar que sea un numero usamos el objeto Number(); de vanilla js.
   
   const { editTodo, getTodo, loading } = useStateful();
-
   let todoText;
 
   if(location.state?.item){//same: "location.state && location.state.todo"

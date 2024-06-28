@@ -3,7 +3,7 @@ import { TodoForm } from '../../interface/TodoForm/TodoForm';
 import { useStateful } from '../useStateful';
 
 const EditTodoPage = () => {
-  const location = useLocation();//con "useLocation()" podemos transferir informacion de un a ruta a otra. y que esa otra ruta pueda recibir esa informacion(aun falta informarme y estudiar mas sobre este Hook de react-router-dom).
+  const location = useLocation();//con "useLocation()" podemos transferir informacion de un a ruta a otra. y que esa otra ruta pueda recibir esa informacion(aun falta informarme y estudiar mas sobre este Hook de react-router-dom). - Claro, el hook useLocation en React Router DOM versión 6 se utiliza para obtener información sobre la URL actual en tu aplicación. Es útil para condicionalmente renderizar contenido o realizar acciones basadas en la ruta actual del usuario. (GPT)
   const params = useParams();
   const id = Number(params.id)//Los parametros de una url por defecto son textos, para asegurar que sea un numero usamos el objeto Number(); de vanilla js.
   

@@ -6,15 +6,15 @@ const withStorageListener = (WrappedComponent) => {
 
     useEffect(() => {
       const onStorage = (event) => {
-        if (event.key === "TODOS_V2") {
+        if (event.key === 'TODOS_V2') {
           setStorageChange(true);
-          }
-        };
+        }
+      };
 
-      window.addEventListener("storage", onStorage);
-      console.log('useEffect(withStorageListener) reinisializado because se monto y desmonto el componente de ruta')
+      window.addEventListener('storage', onStorage);
+
       return () => {
-        window.removeEventListener("storage", onStorage);//por que se remueve el listener???????????????????????????????
+        window.removeEventListener('storage', onStorage); //por que se remueve el listener???????????????????????????????
       };
     }, []);
 
@@ -23,10 +23,7 @@ const withStorageListener = (WrappedComponent) => {
       setStorageChange(false);
     };
 
-    return <WrappedComponent
-      show={storageChange}
-      toggleShow={toggleShow}
-    />
+    return <WrappedComponent show={storageChange} toggleShow={toggleShow} />;
   };
 };
 
